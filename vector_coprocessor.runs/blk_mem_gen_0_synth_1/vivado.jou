@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Wed May 21 22:58:25 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sat Sep 27 14:14:47 2025
+# Process ID         : 22877
+# Current directory  : /home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.runs/blk_mem_gen_0_synth_1
+# Command line       : vivado -log blk_mem_gen_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source blk_mem_gen_0.tcl
+# Log file           : /home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.runs/blk_mem_gen_0_synth_1/blk_mem_gen_0.vds
+# Journal file       : /home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.runs/blk_mem_gen_0_synth_1/vivado.jou
+# Running On         : valkyrie
+# Platform           : Arch
+# Operating System   : Arch Linux
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 3556.166 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 8093 MB
+# Swap memory        : 4294 MB
+# Total Virtual      : 12388 MB
+# Available Virtual  : 7108 MB
+#-----------------------------------------------------------
+source blk_mem_gen_0.tcl -notrace
