@@ -45,7 +45,7 @@ task automatic write_to_bram(input logic [9:0] addr, input logic [9:0] data);
 endtask 
 
 task automatic read_from_bram(input logic [9:0] addr);
-    @(negedge clkb) begin // We locate ourselves before the next posedge
+    @(posedge clkb) begin // We locate ourselves before the next posedge
         addrb = addr;
         enb = 1'b1;
     end

@@ -1,8 +1,13 @@
 0.7
 2020.2
-May 21 2025
-22:59:56
-/home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v,1758993284,verilog,,,,blk_mem_gen_0,,uvm,../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef,,,,,
-/home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,uvm,,,,,,
-/home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.srcs/sim_1/new/bram_tb.sv,1759022465,systemVerilog,,,,bram_tb,,uvm,../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef,,,,,
-/home/moonflax/Coding/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/new/vector_coprocessor.sv,1758994325,systemVerilog,,,,vector_coprocessor,,uvm,../../../../../../../../../opt/Xilinx/2025.1/data/rsb/busdef,,,,,
+May 22 2025
+00:13:55
+C:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v,1759203956,verilog,,C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/data_sync.v,,blk_mem_gen_0,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.sim/sim_1/behav/xsim/glbl.v,1759203956,verilog,,,,glbl,,uvm,,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sim_1/new/bram_tb.sv,1759253273,systemVerilog,,,,bram_tb,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sim_1/new/tb_uart_vector.sv,1759252520,systemVerilog,,,,tb_uart_vector,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/data_sync.v,1759192378,verilog,,C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/new/top_uart_rx.v,,data_sync,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_baud_tick_gen.v,1759192378,verilog,,C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_rx.v,,uart_baud_tick_gen,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_rx.v,1759192378,verilog,,,,uart_rx,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/new/top_uart_rx.v,1759200944,verilog,,C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_baud_tick_gen.v,,top_uart_rx,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/new/vector_coprocessor.sv,1759203956,systemVerilog,,C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sim_1/new/tb_uart_vector.sv,,vector_coprocessor,,uvm,../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
