@@ -54,6 +54,7 @@
 COMPONENT blk_mem_gen_0
   PORT (
     clka : IN STD_LOGIC;
+    rsta : IN STD_LOGIC;
     ena : IN STD_LOGIC;
     wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     addra : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
@@ -64,7 +65,9 @@ COMPONENT blk_mem_gen_0
     web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     addrb : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
     dinb : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-    doutb : OUT STD_LOGIC_VECTOR(9 DOWNTO 0) 
+    doutb : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+    rsta_busy : OUT STD_LOGIC;
+    rstb_busy : OUT STD_LOGIC 
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -76,6 +79,7 @@ END COMPONENT;
 your_instance_name : blk_mem_gen_0
   PORT MAP (
     clka => clka,
+    rsta => rsta,
     ena => ena,
     wea => wea,
     addra => addra,
@@ -86,7 +90,9 @@ your_instance_name : blk_mem_gen_0
     web => web,
     addrb => addrb,
     dinb => dinb,
-    doutb => doutb
+    doutb => doutb,
+    rsta_busy => rsta_busy,
+    rstb_busy => rstb_busy
   );
 -- INST_TAG_END ------ End INSTANTIATION Template ---------
 

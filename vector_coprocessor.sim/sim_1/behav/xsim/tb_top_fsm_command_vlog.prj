@@ -1,5 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"../../../../vector_coprocessor.gen/sources_1/ip/blk_mem_gen_1/sim/blk_mem_gen_1.v" \
 "../../../../vector_coprocessor.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
 
 sv xil_defaultlib  --include "../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \

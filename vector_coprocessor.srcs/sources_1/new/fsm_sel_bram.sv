@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module fsm_sel_bram(
-    input logic clk, reset, rx_ready, flag_write,
+    input logic clk, reset, rx_ready, flag_write, flag_end_write,
     input logic [7:0] rx_data,
     output logic sel_bram, reset_bram, flag_bram, busy_sel_bram
     );
@@ -58,7 +58,7 @@ module fsm_sel_bram(
                 reset_bram = 1'b1;
                 flag_bram  = 1'b1;
                 busy_sel_bram = 1'b1;
-                if (rx_ready)
+                if (flag_end_write)
                     next_state = IDLE;
                 else 
                     next_state = HOLD_A;
@@ -69,7 +69,7 @@ module fsm_sel_bram(
                 reset_bram = 1'b1;
                 flag_bram  = 1'b1;
                 busy_sel_bram = 1'b1;
-                if (rx_ready)
+                if (flag_end_write)
                     next_state = IDLE;
                 else 
                     next_state = HOLD_B;

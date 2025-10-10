@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,358.001 ns"></ZoomEndTime>
-      <Cursor1Time time="0.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="13.700001 us"></ZoomEndTime>
+      <Cursor1Time time="2.440000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="185"></NameColumnWidth>
+      <NameColumnWidth column_width="173"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />
@@ -76,6 +76,18 @@
       <wvobject fp_name="/tb_top_fsm_command/flag_bram" type="logic">
          <obj_property name="ElementShortName">flag_bram</obj_property>
          <obj_property name="ObjectShortName">flag_bram</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/fsm_sel_bram_inst/busy_sel_bram" type="logic">
+         <obj_property name="ElementShortName">busy_sel_bram</obj_property>
+         <obj_property name="ObjectShortName">busy_sel_bram</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/fsm_sel_bram_inst/state" type="array">
+         <obj_property name="ElementShortName">state[2:0]</obj_property>
+         <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/fsm_sel_bram_inst/next_state" type="array">
+         <obj_property name="ElementShortName">next_state[2:0]</obj_property>
+         <obj_property name="ObjectShortName">next_state[2:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group29" type="group">
@@ -149,28 +161,64 @@
       </wvobject>
    </wvobject>
    <wvobject fp_name="group254" type="group">
-      <obj_property name="label">BRAMA</obj_property>
+      <obj_property name="label">MUX</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/tb_top_fsm_command/dut/bram/ena" type="logic">
-         <obj_property name="ElementShortName">ena</obj_property>
-         <obj_property name="ObjectShortName">ena</obj_property>
+      <wvobject fp_name="/tb_top_fsm_command/dut/enable_common" type="logic">
+         <obj_property name="ElementShortName">enable_common</obj_property>
+         <obj_property name="ObjectShortName">enable_common</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_top_fsm_command/dut/bram/wea" type="array">
-         <obj_property name="ElementShortName">wea[0:0]</obj_property>
-         <obj_property name="ObjectShortName">wea[0:0]</obj_property>
+      <wvobject fp_name="/tb_top_fsm_command/dut/write_enable_common" type="logic">
+         <obj_property name="ElementShortName">write_enable_common</obj_property>
+         <obj_property name="ObjectShortName">write_enable_common</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_top_fsm_command/dut/bram/addra" type="array">
+      <wvobject fp_name="/tb_top_fsm_command/dut/write_address_common" type="array">
+         <obj_property name="ElementShortName">write_address_common[9:0]</obj_property>
+         <obj_property name="ObjectShortName">write_address_common[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/write_data_common" type="array">
+         <obj_property name="ElementShortName">write_data_common[9:0]</obj_property>
+         <obj_property name="ObjectShortName">write_data_common[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/ena_a" type="logic">
+         <obj_property name="ElementShortName">ena_a</obj_property>
+         <obj_property name="ObjectShortName">ena_a</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/wea_a" type="logic">
+         <obj_property name="ElementShortName">wea_a</obj_property>
+         <obj_property name="ObjectShortName">wea_a</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/addra" type="array">
          <obj_property name="ElementShortName">addra[9:0]</obj_property>
          <obj_property name="ObjectShortName">addra[9:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_top_fsm_command/dut/bram/dina" type="array">
-         <obj_property name="ElementShortName">dina[9:0]</obj_property>
-         <obj_property name="ObjectShortName">dina[9:0]</obj_property>
+      <wvobject fp_name="/tb_top_fsm_command/dut/dina_a" type="array">
+         <obj_property name="ElementShortName">dina_a[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dina_a[9:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_top_fsm_command/dut/bram/douta" type="array">
-         <obj_property name="ElementShortName">douta[9:0]</obj_property>
-         <obj_property name="ObjectShortName">douta[9:0]</obj_property>
+      <wvobject fp_name="/tb_top_fsm_command/dut/rsta" type="logic">
+         <obj_property name="ElementShortName">rsta</obj_property>
+         <obj_property name="ObjectShortName">rsta</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/ena_b" type="logic">
+         <obj_property name="ElementShortName">ena_b</obj_property>
+         <obj_property name="ObjectShortName">ena_b</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/wea_b" type="logic">
+         <obj_property name="ElementShortName">wea_b</obj_property>
+         <obj_property name="ObjectShortName">wea_b</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/addrb" type="array">
+         <obj_property name="ElementShortName">addrb[9:0]</obj_property>
+         <obj_property name="ObjectShortName">addrb[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/dina_b" type="array">
+         <obj_property name="ElementShortName">dina_b[9:0]</obj_property>
+         <obj_property name="ObjectShortName">dina_b[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_top_fsm_command/dut/rsta_b" type="logic">
+         <obj_property name="ElementShortName">rsta_b</obj_property>
+         <obj_property name="ObjectShortName">rsta_b</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>
