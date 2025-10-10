@@ -30,7 +30,7 @@ module fsm_read_command(
             READ_BYTE: begin
                 if (rx_data == 8'h00)
                     next_state = WRITE_MODE;
-                else if (rx_data == 8'h11)
+                else
                     next_state = COMMAND_MODE;
             end
 
@@ -54,10 +54,10 @@ module fsm_read_command(
                
             HOLD_COMMAND: begin
                 flag_command = 1'b1;
-                if (rx_ready)
-                    next_state = IDLE;  
-                else 
-                    next_state = HOLD_COMMAND;
+//                if (rx_ready)
+//                    next_state = IDLE;  
+//                else 
+                next_state = IDLE;
             end  
         endcase
     end

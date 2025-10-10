@@ -150,6 +150,7 @@ top_uart_tx #(
     .tx_data(tx_data),
     .tx_busy(tx_busy)
 );
+
 assign tx = tx_wire;
 assign JC_2 = tx_wire;
 
@@ -158,7 +159,8 @@ ila_0 ila (
     .clk(clk),
     .probe0(rx_data),
     .probe1(splitter_busy),
-    .probe2(proc_core_state)
+    .probe2(proc_core_state),
+    .probe3(addrb)
 );
 
 endmodule

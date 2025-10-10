@@ -25,7 +25,7 @@ module processing_core_fsm
 	input 	logic clk, rst, man_ready, cmd_ready, splitter_busy,
 	input 	logic [2:0] cmd,
 	output logic data_ready, bram_enable,
-	output logic [9:0] addr,
+	output logic [$clog2(MAX_ADDR)-1:0] addr,
 	output logic [10:0] proc_core_state
 );
 
@@ -35,7 +35,7 @@ module processing_core_fsm
 enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT} CurrentState, NextState;
 assign proc_core_state = CurrentState;
 //Timer-related declarations:
-const logic [9:0] addr_max = MAX_ADDR;
+const logic [$clog2(MAX_ADDR)-1:0] addr_max = MAX_ADDR-1;
 
 //Part 3: Statements:---------------------------------------
 logic addr_incr;
@@ -59,7 +59,7 @@ always_comb begin
     data_ready = 1'b0;
     case (CurrentState)
         IDLE: begin
-            if (cmd_ready && (cmd == 1 || cmd == 2)) NextState = SUM_EXEC;
+            if (cmd_ready && (cmd == 1 || cmd == 2 || cmd == 3)) NextState = SUM_EXEC;
             else NextState = IDLE;
         end
     
@@ -70,17 +70,19 @@ always_comb begin
         end
         
         SUM_READY: begin
+            bram_enable = 1'b1;
             data_ready = 1'b1;
             NextState = SUM_WAIT;
         end
         
         SUM_WAIT: begin
+            bram_enable = 1'b1;
             if (!splitter_busy) NextState = SUM_INCR;
             else NextState = SUM_WAIT;
         end
         
         SUM_INCR: begin
-            if (addr >= addr_max-1) NextState = IDLE;
+            if (addr >= addr_max) NextState = IDLE;
             else begin
             addr_incr = 1'b1;
             NextState = SUM_EXEC;

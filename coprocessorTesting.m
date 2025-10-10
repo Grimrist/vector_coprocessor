@@ -31,6 +31,7 @@ fprintf("\n%-8s %-12s %-12s %-12s\n", "Index", "Enviado", "Low-High", "Recibido"
 fprintf("%s\n", repmat('-',1,45));
 % Enviar comando write2dev
 write(puerto, uint8(0), "uint8");
+write(puerto, uint8(0), "uint8");
 
 for k = 1:num_datos
     dato = A(k);
@@ -43,11 +44,31 @@ for k = 1:num_datos
     write(puerto, uint8(low), "uint8");
     write(puerto, uint8(high), "uint8");
 end
+write(puerto, uint8(0xFF), "uint8");
+write(puerto, uint8(0xFF), "uint8");
+
+% Enviar comando write2dev
+write(puerto, uint8(0x00), "uint8");
+write(puerto, uint8(0x11), "uint8");
+
+for k = 1:num_datos
+    dato = B(k);
+
+    % separa el número de 10 bits en dos bytes
+    low  = bitand(dato, 255);    % 8 bits bajos
+    high = bitshift(dato, -8);   % 2 bits altos
+
+    % enviar al puerto serial
+    write(puerto, uint8(low), "uint8");
+    write(puerto, uint8(high), "uint8");
+end
+write(puerto, uint8(0xFF), "uint8");
+write(puerto, uint8(0xFF), "uint8");
 
 % Enviar comando read2dev
-bramB = bitshift(1, 2);
-read_cmd = bitand(1, bramB);
-write(puerto, uint8(1), "uint8");
+bramB = bitshift(1, 3);
+read_cmd = bitor(0x02, bramB);
+write(puerto, uint8(read_cmd), "uint8");
 
 for k = 1:num_datos
     % recibir respuesta de la FPGA

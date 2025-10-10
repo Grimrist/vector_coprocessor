@@ -27,7 +27,7 @@ module processing_core
     input logic [2:0] cmd,
     input logic [9:0] bram_out_A, bram_out_B,
     output logic bram_enable, data_ready,
-    output logic [9:0] bram_addr,
+    output logic [$clog2(MAX_ADDR)-1:0] bram_addr,
     output logic [9:0] result,
     output logic [10:0] proc_core_state
 );
