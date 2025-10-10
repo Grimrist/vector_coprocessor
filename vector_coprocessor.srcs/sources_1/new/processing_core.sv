@@ -23,12 +23,13 @@
 module processing_core 
 #(parameter MAX_ADDR = 1024)
 (
-    input logic clk, rst, cmd_ready, splitter_busy,
+    input logic clk, rst, cmd_ready, splitter_busy, bram_sel,
     input logic [2:0] cmd,
     input logic [9:0] bram_out_A, bram_out_B,
     output logic bram_enable, data_ready,
     output logic [9:0] bram_addr,
-    output logic [9:0] result
+    output logic [9:0] result,
+    output logic [10:0] proc_core_state
 );
     
 processing_core_fsm #(.MAX_ADDR(MAX_ADDR)) ProcessingCoreFSM (
@@ -39,7 +40,8 @@ processing_core_fsm #(.MAX_ADDR(MAX_ADDR)) ProcessingCoreFSM (
     .splitter_busy(splitter_busy),
     .data_ready(data_ready),
     .bram_enable(bram_enable),
-    .addr(bram_addr)
+    .addr(bram_addr),
+    .proc_core_state(proc_core_state)
 );
 
 // Operation modules
@@ -48,6 +50,7 @@ logic [9:0] out_read, out_sum, out_avg, out_euc, out_man, out_dot;
 read_vec ReadVec(
     .in_A(bram_out_A),
     .in_B(bram_out_B),
+    .sel(bram_sel),
     .out(out_read)
 );
 
@@ -84,12 +87,12 @@ dot_prod DotProd(
 // Mux to select which result to push to UART
 always_comb begin
     case (cmd)
-        3'd0: result = out_read;
-        3'd1: result = out_sum;
-        3'd2: result = out_avg;
-        3'd3: result = out_euc;        
-        3'd4: result = out_man;
-        3'd5: result = out_dot;
+        3'd1: result = out_read;
+        3'd2: result = out_sum;
+        3'd3: result = out_avg;
+        3'd4: result = out_euc;        
+        3'd5: result = out_man;
+        3'd6: result = out_dot;
         default: result = out_sum;    
     endcase
 end

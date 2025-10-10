@@ -22,6 +22,15 @@
 
 module read_vec(
     input logic [9:0] in_A, in_B,
+    input logic sel,
     output logic [9:0] out
     );
+    
+always_comb begin
+    if (sel)
+        out = in_B;
+    else
+        out = in_A;
+end
+
 endmodule

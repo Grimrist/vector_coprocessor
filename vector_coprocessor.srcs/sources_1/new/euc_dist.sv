@@ -25,13 +25,13 @@ module euc_dist (
     output logic [9:0] out
 );
 
-logic s_axis_cartesian_tvalid;
-logic [9:0] s_axis_cartesian_tdata;
-logic [5:0] m_axis_dout_tdata;
-logic m_axis_dout_tvalid;
+//logic s_axis_cartesian_tvalid;
+//logic [9:0] s_axis_cartesian_tdata;
+//logic [5:0] m_axis_dout_tdata;
+//logic m_axis_dout_tvalid;
 
-cordic_0 cordic(
-);
+//cordic_0 cordic(
+//);
 
 assign out = (in_A - in_B)^2;
 endmodule

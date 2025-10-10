@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 30.09.2025 13:46:31
+// Create Date: 10/10/2025 12:03:41 PM
 // Design Name: 
-// Module Name: uart_rx_memory
+// Module Name: vector_coprocessor_tb_nouart
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module uart_rx_memory(
+module vector_coprocessor_tb_nouart(
 
     );
 endmodule

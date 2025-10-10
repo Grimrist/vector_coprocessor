@@ -25,14 +25,15 @@ module processing_core_fsm
 	input 	logic clk, rst, man_ready, cmd_ready, splitter_busy,
 	input 	logic [2:0] cmd,
 	output logic data_ready, bram_enable,
-	output logic [9:0] addr
+	output logic [9:0] addr,
+	output logic [10:0] proc_core_state
 );
 
 //Declarations:------------------------------
 
 //FSM states type:
 enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT} CurrentState, NextState;
-
+assign proc_core_state = CurrentState;
 //Timer-related declarations:
 const logic [9:0] addr_max = MAX_ADDR;
 

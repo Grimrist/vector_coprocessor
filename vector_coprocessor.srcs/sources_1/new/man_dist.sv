@@ -26,5 +26,5 @@ module man_dist(
 );
 
 
-assign out = in_A + in_B;
+assign out = in_A - in_B;
 endmodule
