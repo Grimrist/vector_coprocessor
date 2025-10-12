@@ -21,8 +21,9 @@
 
 
 module euc_dist (
-    input logic [9:0] in_A, in_B,
-    output logic [9:0] out
+    input logic [9:0] in_A, in_B, 
+    input logic [29:0] in_res,
+    output logic [29:0] out
 );
 
 //logic s_axis_cartesian_tvalid;
@@ -32,6 +33,9 @@ module euc_dist (
 
 //cordic_0 cordic(
 //);
+logic [29:0] out_sub, out_exp;
+assign out_sub = in_A - in_B;
+assign out_exp = (out_sub)^2;
+assign out = out_exp + in_res;
 
-assign out = (in_A - in_B)^2;
 endmodule

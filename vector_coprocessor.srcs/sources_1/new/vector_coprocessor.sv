@@ -3,7 +3,7 @@
 module vector_coprocessor 
 #(parameter MEMORY_DEPTH = 1024) (
     input logic clk, rst_n, rx,
-    output logic tx, JC, JC_2
+    output logic tx
 );
 
 assign JC = rx;
@@ -86,8 +86,10 @@ uart_rx_logic #(
 );
 
 // Command block
-logic bram_sel, reset_res;
-logic [2:0] cmd;
+logic bram_sel, reset_res, out_mode;
+logic [1:0] cmd;
+logic [1:0] max_pck;
+
 command_block Command_Block (
     .clk, 
     .rst,
@@ -96,14 +98,16 @@ command_block Command_Block (
     .cmd,
     .bram_sel,
     .cmd_ready,
-    .reset_res
+    .max_pck,
+    .out_mode
 );
 
 // Processing core
 logic tx_start, tx_busy, splitter_busy;
-logic [9:0] result;
+logic [29:0] result;
 logic [7:0] tx_data;
 logic [10:0] proc_core_state;
+logic [1:0] data_sel;
 
 processing_core #(.MAX_ADDR(MEMORY_DEPTH)) Processing_Core (
     .clk(clkb), 
@@ -115,28 +119,32 @@ processing_core #(.MAX_ADDR(MEMORY_DEPTH)) Processing_Core (
     .bram_out_B(doutb_b),
     .bram_enable(enb),
     .bram_addr(addrb),
-    .result(result),
+    .result_reg(result),
     .splitter_busy(splitter_busy),
     .data_ready(data_ready),
-    .proc_core_state(proc_core_state)
+    .proc_core_state(proc_core_state),
+    .out_mode(out_mode)
 );
 
-tx_splitter_fsm splitter (
+tx_splitter_new splitter (
     .clk(clkb),
     .rst(rst),
     .data_ready(data_ready),
 	.data_sel(data_sel), 
+	.max_pck(max_pck),
 	.tx_busy(tx_busy),
 	.tx_start(tx_start),
 	.splitter_busy(splitter_busy)
 );
 
-// Mux to pick between LSB and MSB
+// Mux to pick which part of result to send
 always_comb begin
-    if (data_sel == 0)
-        tx_data = result[7:0];
-    else
-        tx_data = {6'b0, result[9:8]};
+    case (data_sel)
+        'd0: tx_data = result[7:0];
+        'd1: tx_data = result[15:8];
+        'd2: tx_data = result[23:16];
+        'd3: tx_data = {2'b0, result[29:24]};
+    endcase
 end
 
 top_uart_tx #(
@@ -145,14 +153,11 @@ top_uart_tx #(
 ) UART_TX (
     .clk(clkb),
     .reset(rst),
-    .tx(tx_wire),
+    .tx(tx),
     .tx_start(tx_start),
     .tx_data(tx_data),
     .tx_busy(tx_busy)
 );
-
-assign tx = tx_wire;
-assign JC_2 = tx_wire;
 
 // ILA 
 ila_0 ila (

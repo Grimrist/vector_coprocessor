@@ -24,21 +24,18 @@ module command_block (
     input logic clk, rst,
     input logic [3:0] rx_data,
     input logic flag_command,
-    output logic [2:0] cmd,
+    output logic [1:0] cmd,
     output logic bram_sel,
-    output logic reset_res,
-    output logic cmd_ready
+    output logic cmd_ready,
+    output logic out_mode,
+    output logic [1:0] max_pck
 );
 
-assign cmd = rx_data[2:0];
+assign cmd = rx_data[1:0];
+assign out_mode = rx_data[2]; 
 assign bram_sel = rx_data[3];
 
-always_comb begin
-    if (cmd_ready)
-        reset_res = 'b1;
-    else
-        reset_res = 'b0;
-end
+assign max_pck = (out_mode) ? 2'd3 : 2'd1;
 
 always_ff @(posedge clk) begin
     if (rst)

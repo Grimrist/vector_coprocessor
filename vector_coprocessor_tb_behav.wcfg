@@ -6,20 +6,21 @@
       <db_ref path="vector_coprocessor_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
+            <top_module name="std" />
             <top_module name="vector_coprocessor_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="5.160680333 ms"></ZoomStartTime>
-      <ZoomEndTime time="12.950680334 ms"></ZoomEndTime>
-      <Cursor1Time time="10.740680333 ms"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="15.980000001 ms"></ZoomEndTime>
+      <Cursor1Time time="9.283715000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="185"></NameColumnWidth>
+      <NameColumnWidth column_width="165"></NameColumnWidth>
       <ValueColumnWidth column_width="60"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="46" />
+   <WVObjectSize size="64" />
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -35,10 +36,6 @@
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/tx">
       <obj_property name="ElementShortName">tx</obj_property>
       <obj_property name="ObjectShortName">tx</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/to_send">
-      <obj_property name="ElementShortName">to_send[0:15][9:0]</obj_property>
-      <obj_property name="ObjectShortName">to_send[0:15][9:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/ok">
       <obj_property name="ElementShortName">ok</obj_property>
@@ -92,26 +89,79 @@
       <obj_property name="ElementShortName">rx_ready</obj_property>
       <obj_property name="ObjectShortName">rx_ready</obj_property>
    </wvobject>
-   <wvobject fp_name="divider85" type="divider">
-      <obj_property name="label">Processing Core</obj_property>
+   <wvobject fp_name="divider467" type="divider">
+      <obj_property name="label">Command Block</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/NextState">
-      <obj_property name="ElementShortName">NextState[10:0]</obj_property>
-      <obj_property name="ObjectShortName">NextState[10:0]</obj_property>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Command_Block/cmd">
+      <obj_property name="ElementShortName">cmd[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd[1:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result">
-      <obj_property name="ElementShortName">result[9:0]</obj_property>
-      <obj_property name="ObjectShortName">result[9:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Command_Block/bram_sel">
+      <obj_property name="ElementShortName">bram_sel</obj_property>
+      <obj_property name="ObjectShortName">bram_sel</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Command_Block/out_mode">
+      <obj_property name="ElementShortName">out_mode</obj_property>
+      <obj_property name="ObjectShortName">out_mode</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/cmd_ready">
       <obj_property name="ElementShortName">cmd_ready</obj_property>
       <obj_property name="ObjectShortName">cmd_ready</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/addr_max">
-      <obj_property name="ElementShortName">addr_max[3:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_max[3:0]</obj_property>
+   <wvobject fp_name="divider662" type="divider">
+      <obj_property name="label">Manhattan Distance</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_A">
+      <obj_property name="ElementShortName">in_A[9:0]</obj_property>
+      <obj_property name="ObjectShortName">in_A[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_B">
+      <obj_property name="ElementShortName">in_B[9:0]</obj_property>
+      <obj_property name="ObjectShortName">in_B[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_res">
+      <obj_property name="ElementShortName">in_res[29:0]</obj_property>
+      <obj_property name="ObjectShortName">in_res[29:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/out">
+      <obj_property name="ElementShortName">out[29:0]</obj_property>
+      <obj_property name="ObjectShortName">out[29:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider85" type="divider">
+      <obj_property name="label">Processing Core</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/CurrentState">
+      <obj_property name="ElementShortName">CurrentState[10:0]</obj_property>
+      <obj_property name="ObjectShortName">CurrentState[10:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result">
+      <obj_property name="ElementShortName">result[29:0]</obj_property>
+      <obj_property name="ObjectShortName">result[29:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/store_res">
+      <obj_property name="ElementShortName">store_res</obj_property>
+      <obj_property name="ObjectShortName">store_res</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/addr_incr">
+      <obj_property name="ElementShortName">addr_incr</obj_property>
+      <obj_property name="ObjectShortName">addr_incr</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/addr">
+      <obj_property name="ElementShortName">addr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result_reg">
+      <obj_property name="ElementShortName">result_reg[29:0]</obj_property>
+      <obj_property name="ObjectShortName">result_reg[29:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="divider87" type="divider">
       <obj_property name="label">BRAM_A signals</obj_property>
@@ -142,6 +192,7 @@
    <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/doutb">
       <obj_property name="ElementShortName">doutb[9:0]</obj_property>
       <obj_property name="ObjectShortName">doutb[9:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/enb">
       <obj_property name="ElementShortName">enb</obj_property>
@@ -184,8 +235,8 @@
       <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result">
-      <obj_property name="ElementShortName">result[9:0]</obj_property>
-      <obj_property name="ObjectShortName">result[9:0]</obj_property>
+      <obj_property name="ElementShortName">result[29:0]</obj_property>
+      <obj_property name="ObjectShortName">result[29:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/UART_TX/uart_tx_blk/tx_data_reg">
@@ -197,8 +248,8 @@
       <obj_property name="ObjectShortName">tx_start</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vector_coprocessor_tb/rx_data">
-      <obj_property name="ElementShortName">rx_data[9:0]</obj_property>
-      <obj_property name="ObjectShortName">rx_data[9:0]</obj_property>
+      <obj_property name="ElementShortName">rx_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[31:0]</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/vector_coprocessor_tb/rx_byte_lsb">
@@ -208,5 +259,33 @@
    <wvobject type="array" fp_name="/vector_coprocessor_tb/rx_byte_msb">
       <obj_property name="ElementShortName">rx_byte_msb[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_byte_msb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider524" type="divider">
+      <obj_property name="label">TX splitter</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/splitter/data_ready">
+      <obj_property name="ElementShortName">data_ready</obj_property>
+      <obj_property name="ObjectShortName">data_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Command_Block/max_pck">
+      <obj_property name="ElementShortName">max_pck[1:0]</obj_property>
+      <obj_property name="ObjectShortName">max_pck[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/splitter/data_sel">
+      <obj_property name="ElementShortName">data_sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">data_sel[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/splitter/splitter_busy">
+      <obj_property name="ElementShortName">splitter_busy</obj_property>
+      <obj_property name="ObjectShortName">splitter_busy</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/splitter/CurrentState">
+      <obj_property name="ElementShortName">CurrentState[3:0]</obj_property>
+      <obj_property name="ObjectShortName">CurrentState[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_TX/uart_tx_blk/tx_busy">
+      <obj_property name="ElementShortName">tx_busy</obj_property>
+      <obj_property name="ObjectShortName">tx_busy</obj_property>
    </wvobject>
 </wave_config>

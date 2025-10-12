@@ -22,9 +22,8 @@
 
 module processing_core_fsm 
 #(parameter MAX_ADDR = 1024) (
-	input 	logic clk, rst, man_ready, cmd_ready, splitter_busy,
-	input 	logic [2:0] cmd,
-	output logic data_ready, bram_enable,
+	input 	logic clk, rst, cmd_ready, splitter_busy, out_mode,
+	output logic data_ready, bram_enable, store_res,
 	output logic [$clog2(MAX_ADDR)-1:0] addr,
 	output logic [10:0] proc_core_state
 );
@@ -32,13 +31,22 @@ module processing_core_fsm
 //Declarations:------------------------------
 
 //FSM states type:
-enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT} CurrentState, NextState;
+enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT, CUM_EXEC, CUM_INCR, CUM_SEND} CurrentState, NextState;
 assign proc_core_state = CurrentState;
 //Timer-related declarations:
+const logic [1:0] T1 = 3;
+const logic [1:0] tmax = 2;
+logic [1:0] t;
 const logic [$clog2(MAX_ADDR)-1:0] addr_max = MAX_ADDR-1;
 
 //Part 3: Statements:---------------------------------------
 logic addr_incr;
+
+ //Timer :
+always_ff @(posedge clk)
+    if (rst) t <= 0;
+    else if (CurrentState != NextState) t <= 0; //reset the timer when state changes
+    else if (t != tmax) t <= t + 1;
 
 // Addr counter:
 always_ff @(posedge clk)
@@ -57,15 +65,20 @@ always_comb begin
     bram_enable = 1'b0;
     addr_incr = 1'b0;
     data_ready = 1'b0;
+    store_res = 1'b0;
     case (CurrentState)
         IDLE: begin
-            if (cmd_ready && (cmd == 1 || cmd == 2 || cmd == 3)) NextState = SUM_EXEC;
+            if (cmd_ready) begin
+                if (!out_mode) NextState = SUM_EXEC;
+                else NextState = CUM_EXEC;
+            end
             else NextState = IDLE;
         end
     
         SUM_EXEC: begin
             bram_enable = 1'b1;
-            if (!splitter_busy) NextState = SUM_READY;
+            store_res = 1'b1;
+            if (!splitter_busy && t >= T1-1) NextState = SUM_READY;
             else NextState = SUM_EXEC;
         end
         
@@ -87,6 +100,26 @@ always_comb begin
             addr_incr = 1'b1;
             NextState = SUM_EXEC;
             end
+        end
+        
+        CUM_EXEC: begin
+            bram_enable = 1'b1;
+            if (t >= T1-1) NextState = CUM_INCR;
+            else NextState = CUM_EXEC;
+        end
+        
+        CUM_INCR: begin
+            store_res = 1'b1;
+            if (addr >= addr_max) NextState = CUM_SEND;
+            else begin
+            addr_incr = 1'b1;
+            NextState = CUM_EXEC;
+            end
+        end
+        
+        CUM_SEND: begin
+            data_ready = 1'b1;
+            NextState = IDLE;
         end
         
         default: begin

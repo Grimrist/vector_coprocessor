@@ -20,10 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module dot_prod(
-    input logic [9:0] in_A, in_B,
-    output logic [9:0] out
+module dot_prod (
+    input logic [9:0] in_A, in_B, 
+    input logic [29:0] in_res,
+    output logic [29:0] out
 );
-    
-assign out = in_A * in_B;
+
+assign out = (in_A * in_B) + in_res;
+
 endmodule

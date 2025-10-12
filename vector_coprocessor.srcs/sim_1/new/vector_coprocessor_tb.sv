@@ -116,9 +116,11 @@ endtask
 // --------------------------
 // Estímulos
 // --------------------------
-bit [9:0] to_send [N_BYTES];
-byte rx_byte_msb, rx_byte_lsb;
-bit [9:0] rx_data;
+bit [9:0] to_send_a [N_BYTES];
+bit [9:0] to_send_b [N_BYTES];
+
+byte rx_byte_msb, rx_byte_lsb, rx_byte_xlsb, rx_byte_xmsb;
+bit [31:0] rx_data;
 bit  ok;
 int  i;
 
@@ -128,14 +130,31 @@ initial begin
     apply_reset();
     
     // (1) Pre-cargar BRAM vía RX con 16 bytes (1..16)
-    for (i = 0; i < N_BYTES; i++) std::randomize(to_send);
+    for (i = 0; i < N_BYTES; i++) std::randomize(to_send_a);
     
-    $display("[%0t] Pre-cargando BRAM por RX con %0d bytes (1..16)...", $time, N_BYTES);
+    $display("[%0t] Pre-cargando BRAM_A por RX con %0d bytes (1..16)...", $time, N_BYTES);
     uart_send_byte(0);
     uart_send_byte(0);
     for (i = 0; i < N_BYTES; i++) begin
-      uart_send_byte(to_send[i][7:0]);
-      uart_send_byte({6'b0, to_send[i][9:8]});
+      uart_send_byte(to_send_a[i][7:0]);
+      uart_send_byte({6'b0, to_send_a[i][9:8]});
+      repeat (BIT_CLKS/4) @(posedge clk); // pequeño gap
+    end
+    // (1.5) Enviar byte de fin
+    uart_send_byte(8'hFF);
+    uart_send_byte(8'hFF);
+    
+    repeat (BIT_CLKS/4) @(posedge clk); // pequeño gap
+    
+    // (1) Pre-cargar BRAM vía RX con 16 bytes (1..16)
+    for (i = 0; i < N_BYTES; i++) std::randomize(to_send_b);
+    
+    $display("[%0t] Pre-cargando BRAM_B por RX con %0d bytes (1..16)...", $time, N_BYTES);
+    uart_send_byte(0);
+    uart_send_byte('h11);
+    for (i = 0; i < N_BYTES; i++) begin
+      uart_send_byte(to_send_b[i][7:0]);
+      uart_send_byte({6'b0, to_send_b[i][9:8]});
       repeat (BIT_CLKS/4) @(posedge clk); // pequeño gap
     end
     // (1.5) Enviar byte de fin
@@ -145,7 +164,7 @@ initial begin
     repeat (BIT_CLKS/4) @(posedge clk); // pequeño gap
     
     // (2) Enviar comando de lectura
-    uart_send_byte(8'h03);
+    uart_send_byte(8'b0000_0001);
     
     // (3) Capturar 16 bytes desde TX y mostrarlo
     for (i = 0; i < N_BYTES; i++) begin
@@ -154,8 +173,15 @@ initial begin
         rx_data = rx_byte_lsb | (rx_byte_msb[1:0] << 8);
         if (!ok) $fatal(1, "[%0t] Timeout esperando el byte en TX", $time);
         $display("[%0t] TX_byte(addr=2) = %0d (0x%02x)", $time, rx_data, rx_data);
-
     end
+//    uart_recv_byte(rx_byte_xlsb, ok);
+//    uart_recv_byte(rx_byte_lsb, ok);
+//    uart_recv_byte(rx_byte_msb, ok);
+//    uart_recv_byte(rx_byte_xmsb, ok);
+//    rx_data = rx_byte_xlsb | (rx_byte_lsb << 8) | (rx_byte_msb << 16) | (rx_byte_xmsb << 24);
+//    if (!ok) $fatal(1, "[%0t] Timeout esperando el byte en TX", $time);
+//    $display("[%0t] TX_byte(addr=2) = %0d (0x%02x)", $time, rx_data, rx_data);
+    
     
     $display("[%0t] Fin del test.", $time);
     #100_000;

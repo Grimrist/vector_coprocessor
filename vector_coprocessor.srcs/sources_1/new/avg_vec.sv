@@ -21,9 +21,10 @@
 
 
 module avg_vec(
-    input logic [9:0] in_A, in_B, in_res,
+    input logic [9:0] in_A, in_B,
     output logic [9:0] out
 );
-    
+
 assign out = (in_A + in_B) / 2;
+
 endmodule
