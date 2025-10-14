@@ -3,11 +3,11 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Thu Oct  9 18:33:08 2025
-# Process ID         : 14496
+# Start of session at: Tue Oct 14 01:05:26 2025
+# Process ID         : 27600
 # Current directory  : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1
-# Command line       : vivado.exe -log top_fsm_command.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_fsm_command.tcl
-# Log file           : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1/top_fsm_command.vds
+# Command line       : vivado.exe -log vector_coprocessor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vector_coprocessor.tcl
+# Log file           : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1/vector_coprocessor.vds
 # Journal file       : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1\vivado.jou
 # Running On         : Cristian
 # Platform           : Windows Server 2016 or Windows 10
@@ -19,6 +19,6 @@
 # Host memory        : 16782 MB
 # Swap memory        : 8321 MB
 # Total Virtual      : 25103 MB
-# Available Virtual  : 11179 MB
+# Available Virtual  : 6213 MB
 #-----------------------------------------------------------
-source top_fsm_command.tcl -notrace
+source vector_coprocessor.tcl -notrace

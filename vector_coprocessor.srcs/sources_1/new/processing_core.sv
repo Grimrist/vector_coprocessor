@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments:     
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -34,6 +34,7 @@ module processing_core
 
 logic store_res;
 logic [29:0] result;
+logic done;
 
 processing_core_fsm #(.MAX_ADDR(MAX_ADDR)) ProcessingCoreFSM (
     .clk(clk),
@@ -72,10 +73,13 @@ avg_vec AvgVec (
 );
 
 euc_dist EucDist (
+    .clk(clk),
+    .data_ready(data_ready),
     .in_A(bram_out_A),
     .in_B(bram_out_B),
     .in_res(result_reg),
-    .out(out_euc)
+    .out(out_euc),
+    .done(done)
 );
 
 man_dist ManDist (

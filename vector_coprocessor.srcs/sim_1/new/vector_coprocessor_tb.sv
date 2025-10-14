@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/10/2025 02:47:38 PM
-// Design Name: 
-// Module Name: vector_coprocessor_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module vector_coprocessor_tb();
 
@@ -164,7 +144,7 @@ initial begin
     repeat (BIT_CLKS/4) @(posedge clk); // pequeño gap
     
     // (2) Enviar comando de lectura
-    uart_send_byte(8'b0000_0001);
+    uart_send_byte(8'b0000_0110);
     
     // (3) Capturar 16 bytes desde TX y mostrarlo
     for (i = 0; i < N_BYTES; i++) begin

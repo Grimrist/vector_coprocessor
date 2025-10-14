@@ -1,41 +1,39 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/06/2025 07:09:54 PM
-// Design Name: 
-// Module Name: euc_dist
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 module euc_dist (
-    input logic [9:0] in_A, in_B, 
-    input logic [29:0] in_res,
-    output logic [29:0] out
+    input  logic        clk,
+    input  logic        data_ready,  
+    input  logic [9:0]  in_A, in_B,
+    input  logic [29:0] in_res,
+    output logic [29:0] out,
+    output logic        done
 );
 
-//logic s_axis_cartesian_tvalid;
-//logic [9:0] s_axis_cartesian_tdata;
-//logic [5:0] m_axis_dout_tdata;
-//logic m_axis_dout_tvalid;
+    logic [29:0] acc_out, acc_reg;
+    logic        acc_enable;
 
-//cordic_0 cordic(
-//);
-logic [29:0] out_sub, out_exp;
-assign out_sub = in_A - in_B;
-assign out_exp = (out_sub)^2;
-assign out = out_exp + in_res;
+    assign acc_enable = ~data_ready;
+
+    // Acumulador
+    euc_accumulate euc_accumulate (
+        .in_A(in_A),
+        .in_B(in_B),
+        .in_res(in_res),
+        .enable(acc_enable),
+        .out(acc_out)
+    );
+
+    // Registrar el valor final antes de arrancar el cordic
+    always_ff @(posedge clk)
+        if (data_ready)
+            acc_reg <= acc_out;
+
+    // CORDIC sqrt
+    euc_sqrt euc_sqrt (
+        .clk(clk),
+        .start(data_ready),
+        .in_val(acc_reg),   // ← ahora fijo, no cambia
+        .out_val(out),
+        .done(done)
+    );
 
 endmodule
+
