@@ -3,8 +3,8 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Tue Oct 14 01:05:26 2025
-# Process ID         : 27600
+# Start of session at: Tue Oct 14 21:51:42 2025
+# Process ID         : 22396
 # Current directory  : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1
 # Command line       : vivado.exe -log vector_coprocessor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vector_coprocessor.tcl
 # Log file           : C:/IPD432/vector_coprocessor/vector_coprocessor.runs/synth_1/vector_coprocessor.vds
@@ -19,6 +19,6 @@
 # Host memory        : 16782 MB
 # Swap memory        : 8321 MB
 # Total Virtual      : 25103 MB
-# Available Virtual  : 6213 MB
+# Available Virtual  : 4331 MB
 #-----------------------------------------------------------
 source vector_coprocessor.tcl -notrace

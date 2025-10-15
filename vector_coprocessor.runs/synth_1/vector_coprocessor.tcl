@@ -102,8 +102,8 @@ read_verilog -library xil_defaultlib {
   C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_rx.v
   C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/imports/sources_1/imports/uart/uart_tx.v
 }
-read_ip -quiet C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all c:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
+read_ip -quiet C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+set_property used_in_implementation false [get_files -all c:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc]
 
 read_ip -quiet C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
 set_property used_in_implementation false [get_files -all c:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
@@ -118,6 +118,9 @@ set_property used_in_implementation false [get_files -all c:/IPD432/vector_copro
 
 read_ip -quiet C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/ip/cordic_0/cordic_0.xci
 set_property used_in_implementation false [get_files -all c:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/cordic_0/cordic_0_ooc.xdc]
+
+read_ip -quiet C:/IPD432/vector_coprocessor/vector_coprocessor.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all c:/IPD432/vector_coprocessor/vector_coprocessor.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module euc_dist (
     input  logic        clk,
     input  logic        data_ready,  
@@ -21,19 +23,18 @@ module euc_dist (
         .out(acc_out)
     );
 
-    // Registrar el valor final antes de arrancar el cordic
+    // Registrar el valor acumulado final
     always_ff @(posedge clk)
         if (data_ready)
             acc_reg <= acc_out;
 
-    // CORDIC sqrt
+    // CORDIC sqrt (ajustado a 30 bits)
     euc_sqrt euc_sqrt (
         .clk(clk),
         .start(data_ready),
-        .in_val(acc_reg),   // ← ahora fijo, no cambia
+        .in_val(acc_reg),
         .out_val(out),
         .done(done)
     );
 
 endmodule
-

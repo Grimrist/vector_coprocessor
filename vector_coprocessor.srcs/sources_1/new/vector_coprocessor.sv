@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module vector_coprocessor 
-#(parameter MEMORY_DEPTH = 1024) (
+#(parameter MEMORY_DEPTH = 8) (
     input logic clk, rst_n, rx,
     output logic tx
 );
@@ -44,7 +44,7 @@ blk_mem_gen_0 BRAM_Vector_A (
     .dinb('0)
 );
 
-blk_mem_gen_0 BRAM_Vector_B (
+blk_mem_gen_1 BRAM_Vector_B (
     .clka(clka),
     .clkb(clkb),
     .addra(addra_b),
