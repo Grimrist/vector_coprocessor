@@ -28,13 +28,14 @@ module command_block (
     output logic bram_sel,
     output logic cmd_ready,
     output logic out_mode,
-    output logic [1:0] max_pck
+    output logic [1:0] max_pck,
+    output logic sqrt_res
 );
 
 assign cmd = rx_data[1:0];
 assign out_mode = rx_data[2]; 
 assign bram_sel = rx_data[3];
-
+assign sqrt_res = (rx_data[2:0] == 3'b101) ? 1'd1 : 1'd0;
 assign max_pck = (out_mode) ? 2'd3 : 2'd1;
 
 always_ff @(posedge clk) begin

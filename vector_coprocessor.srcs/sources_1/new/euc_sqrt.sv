@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module euc_sqrt (
+module cordic_sqrt (
     input  logic        clk,
     input  logic        start,
     input  logic [29:0] in_val,

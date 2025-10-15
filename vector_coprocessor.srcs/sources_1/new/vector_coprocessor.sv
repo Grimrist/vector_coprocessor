@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module vector_coprocessor 
-#(parameter MEMORY_DEPTH = 8) (
+#(parameter MEMORY_DEPTH = 1024) (
     input logic clk, rst_n, rx,
     output logic tx
 );
@@ -44,7 +44,7 @@ blk_mem_gen_0 BRAM_Vector_A (
     .dinb('0)
 );
 
-blk_mem_gen_1 BRAM_Vector_B (
+blk_mem_gen_0 BRAM_Vector_B (
     .clka(clka),
     .clkb(clkb),
     .addra(addra_b),
@@ -86,7 +86,7 @@ uart_rx_logic #(
 );
 
 // Command block
-logic bram_sel, reset_res, out_mode;
+logic bram_sel, reset_res, out_mode, sqrt_res;
 logic [1:0] cmd;
 logic [1:0] max_pck;
 
@@ -99,7 +99,8 @@ command_block Command_Block (
     .bram_sel,
     .cmd_ready,
     .max_pck,
-    .out_mode
+    .out_mode,
+    .sqrt_res
 );
 
 // Processing core
@@ -119,11 +120,12 @@ processing_core #(.MAX_ADDR(MEMORY_DEPTH)) Processing_Core (
     .bram_out_B(doutb_b),
     .bram_enable(enb),
     .bram_addr(addrb),
-    .result_reg(result),
+    .result_out(result),
     .splitter_busy(splitter_busy),
     .data_ready(data_ready),
     .proc_core_state(proc_core_state),
-    .out_mode(out_mode)
+    .out_mode(out_mode),
+    .sqrt_res(sqrt_res)
 );
 
 tx_splitter_new splitter (
