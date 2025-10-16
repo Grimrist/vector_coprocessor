@@ -34,9 +34,9 @@ module processing_core_fsm
 enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT, CUM_EXEC, CUM_INCR, CUM_SEND} CurrentState, NextState;
 assign proc_core_state = CurrentState;
 //Timer-related declarations:
-const logic [1:0] T1 = 3;
-const logic [1:0] tmax = 2;
-logic [1:0] t;
+const logic [2:0] T1 = 5;
+const logic [2:0] tmax = T1-1;
+logic [2:0] t;
 const logic [$clog2(MAX_ADDR)-1:0] addr_max = MAX_ADDR-1;
 
 //Part 3: Statements:---------------------------------------

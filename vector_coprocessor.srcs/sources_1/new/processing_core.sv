@@ -45,7 +45,8 @@ processing_core_fsm #(.MAX_ADDR(MAX_ADDR)) ProcessingCoreFSM (
 );
 
 // Operaciones
-logic [9:0] out_read, out_sum, out_avg; 
+logic [9:0] out_read, out_avg;
+logic [10:0] out_sum; 
 logic [29:0] out_euc, out_man, out_dot;
 
 read_vec ReadVec (
@@ -68,6 +69,8 @@ avg_vec AvgVec (
 );
 
 euc_dist EucDist (
+    .clk(clk),
+    .rst(cmd_ready),
     .in_A(bram_out_A),
     .in_B(bram_out_B),
     .in_res(result_reg),
@@ -93,7 +96,7 @@ always_comb begin
     if (out_mode == 0)
         case (cmd)
             2'd1: result = {20'b0, out_read};
-            2'd2: result = {20'b0, out_sum};
+            2'd2: result = {19'b0, out_sum};
             2'd3: result = {20'b0, out_avg};
             default: result = {20'b0, out_read};
         endcase

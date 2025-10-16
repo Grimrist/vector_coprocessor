@@ -27,9 +27,9 @@ module unsigned_to_bcd
 	input  logic 		clk, 	 // Reloj
 				reset,   // Reset
 	input  logic 		trigger, // Inicio de conversión
-	input  logic [31:0] 	in,      // Número binario de entrada
+	input  logic [39:0] 	in,      // Número binario de entrada
 	output logic  		idle,    // Si vale 0, indica una conversión en proceso
-	output logic [31:0] 	bcd 	 // Resultado de la conversión
+	output logic [39:0] 	bcd 	 // Resultado de la conversión
 );
 
 	/*
@@ -41,12 +41,12 @@ module unsigned_to_bcd
 	 */
 	 
 	 
-	localparam COUNTER_MAX = 32;
+	localparam COUNTER_MAX = 40;
 	
 	(* fsm_encoding = "one_hot" *) enum logic [2:0] {S_IDLE, S_SHIFT, S_ADD3} state, state_next;
 
-	logic [31:0] shift, shift_next;
-	logic [31:0] bcd_next;
+	logic [39:0] shift, shift_next;
+	logic [39:0] bcd_next;
 	logic [5:0] counter, counter_next; /* Contador 6 bit para las iteraciones */
 
 	always_comb begin
@@ -74,6 +74,12 @@ module unsigned_to_bcd
 			 * Sumamos 3 a cada columna de 4 bits si el valor de esta es
 			 * mayor o igual a 5
 			 */
+            if (shift[39:36] >= 5)
+				shift_next[39:36] = shift[39:36] + 4'd3;
+
+			if (shift[35:32] >= 5)
+				shift_next[35:32] = shift[35:32] + 4'd3;
+
 			if (shift[31:28] >= 5)
 				shift_next[31:28] = shift[31:28] + 4'd3;
 
@@ -102,7 +108,7 @@ module unsigned_to_bcd
 		end
 		S_SHIFT: begin
 			/* Desplazamos un bit de la entrada en el registro shift */
-			shift_next = {shift[30:0], in[COUNTER_MAX - counter_next]};
+			shift_next = {shift[38:0], in[COUNTER_MAX - counter_next]};
 
 			/*
 			 * Si el contador actual alcanza la cuenta máxima, actualizamos la salida y

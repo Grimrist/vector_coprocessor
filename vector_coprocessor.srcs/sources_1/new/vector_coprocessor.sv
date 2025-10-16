@@ -151,14 +151,18 @@ always_comb begin
     endcase
 end
 
+logic [6:0] segments_out;
+
 display_top display_top (
     .clk(clk),
     .rst(rst),
     .result(result),
-    .segments(segments),
+    .segments(segments_out),
     .out_mode(out_mode),
     .anodes(anodes)
 );
+
+assign segments = ~segments_out;
 
 top_uart_tx #(
     .CLK_FREQUENCY(100_000_000),
