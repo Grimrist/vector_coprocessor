@@ -132,9 +132,13 @@ initial begin
 
     // (4) Enviar comando eucDist
     uart_send_byte(8'b0000_0101); // eucDist = 0b101
+    
+    
 
     // (5) Recibir resultado HW
     uart_recv_bytes(euc_hw);
+    #1000
+    uart_send_byte(8'b0000_0101); // eucDist = 0b101
 
     $display("A = %p", A);
     $display("B = %p", B);

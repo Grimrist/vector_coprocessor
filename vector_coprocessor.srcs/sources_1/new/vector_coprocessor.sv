@@ -3,7 +3,9 @@
 module vector_coprocessor 
 #(parameter MEMORY_DEPTH = 1024) (
     input logic clk, rst_n, rx,
-    output logic tx
+    output logic tx,
+    output logic [6:0]  segments,    
+    output logic [7:0]  anodes
 );
 
 assign JC = rx;
@@ -148,6 +150,15 @@ always_comb begin
         'd3: tx_data = {2'b0, result[29:24]};
     endcase
 end
+
+display_top display_top (
+    .clk(clk),
+    .rst(rst),
+    .result(result),
+    .segments(segments),
+    .out_mode(out_mode),
+    .anodes(anodes)
+);
 
 top_uart_tx #(
     .CLK_FREQUENCY(100_000_000),
