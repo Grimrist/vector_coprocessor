@@ -4,7 +4,7 @@ module display_top (
     input  logic        clk,
     input  logic        rst,
     input  logic [29:0] result,
-    input  logic        out_mode,   
+    input  logic        out_mode, data_ready, cmd_ready, disable_screen,   
     output logic [6:0]  segments,
     output logic [7:0]  anodes
 );
@@ -61,8 +61,17 @@ module display_top (
         .anodes(anodes_int)
     );
     
+    logic disp_on;
+    
+    always_ff @(posedge clk) begin
+        if (data_ready && out_mode)
+            disp_on = 1'b1;
+        else if (cmd_ready || disable_screen)
+            disp_on = 1'b0;
+    end
+    
     always_comb begin
-        if (!out_mode) begin
+        if (!disp_on) begin
             segments = 7'b000_0000;   // todos los LEDs apagados
             anodes   = 8'b1111_1111;  // todos desactivados
         end else begin

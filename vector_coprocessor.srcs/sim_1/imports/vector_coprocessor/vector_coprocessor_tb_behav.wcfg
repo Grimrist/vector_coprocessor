@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="41.150000001 ms"></ZoomEndTime>
-      <Cursor1Time time="10.758363805 ms"></Cursor1Time>
+      <ZoomStartTime time="0.834375000 ms"></ZoomStartTime>
+      <ZoomEndTime time="9.104375001 ms"></ZoomEndTime>
+      <Cursor1Time time="5.184375000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="141"></NameColumnWidth>
+      <NameColumnWidth column_width="137"></NameColumnWidth>
       <ValueColumnWidth column_width="60"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="22" />
+   <WVObjectSize size="25" />
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,6 +27,7 @@
    <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/rx_data">
       <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/flag_write">
       <obj_property name="ElementShortName">flag_write</obj_property>
@@ -95,6 +96,18 @@
    <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/sel_bram">
       <obj_property name="ElementShortName">sel_bram</obj_property>
       <obj_property name="ObjectShortName">sel_bram</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/data_ready">
+      <obj_property name="ElementShortName">data_ready</obj_property>
+      <obj_property name="ObjectShortName">data_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/proc_ready">
+      <obj_property name="ElementShortName">proc_ready</obj_property>
+      <obj_property name="ObjectShortName">proc_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/store_res">
+      <obj_property name="ElementShortName">store_res</obj_property>
+      <obj_property name="ObjectShortName">store_res</obj_property>
    </wvobject>
    <wvobject type="group" fp_name="group149">
       <obj_property name="label">BRAMA</obj_property>
@@ -192,6 +205,10 @@
       <obj_property name="label">display</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result_reg">
+         <obj_property name="ElementShortName">result_reg[29:0]</obj_property>
+         <obj_property name="ObjectShortName">result_reg[29:0]</obj_property>
+      </wvobject>
       <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/result">
          <obj_property name="ElementShortName">result[29:0]</obj_property>
          <obj_property name="ObjectShortName">result[29:0]</obj_property>
@@ -204,12 +221,6 @@
       <wvobject type="array" fp_name="/vector_coprocessor_tb/anodes">
          <obj_property name="ElementShortName">anodes[7:0]</obj_property>
          <obj_property name="ObjectShortName">anodes[7:0]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/result">
-         <obj_property name="ElementShortName">result[29:0]</obj_property>
-         <obj_property name="ObjectShortName">result[29:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

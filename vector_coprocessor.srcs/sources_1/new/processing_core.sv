@@ -22,8 +22,7 @@ module processing_core
     input  logic [9:0] bram_out_A, bram_out_B,
     output logic bram_enable, data_ready,
     output logic [$clog2(MAX_ADDR)-1:0] bram_addr,
-    output logic [29:0] result_out,
-    output logic [10:0] proc_core_state
+    output logic [29:0] result_out
 );
 
 logic store_res;
@@ -39,7 +38,6 @@ processing_core_fsm #(.MAX_ADDR(MAX_ADDR)) ProcessingCoreFSM (
     .data_ready(proc_ready),
     .bram_enable(bram_enable),
     .addr(bram_addr),
-    .proc_core_state(proc_core_state),
     .store_res(store_res),
     .out_mode(out_mode)
 );

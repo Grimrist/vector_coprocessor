@@ -24,15 +24,13 @@ module processing_core_fsm
 #(parameter MAX_ADDR = 1024) (
 	input 	logic clk, rst, cmd_ready, splitter_busy, out_mode,
 	output logic data_ready, bram_enable, store_res,
-	output logic [$clog2(MAX_ADDR)-1:0] addr,
-	output logic [10:0] proc_core_state
+	output logic [$clog2(MAX_ADDR)-1:0] addr
 );
 
 //Declarations:------------------------------
 
 //FSM states type:
 enum logic [10:0] {IDLE, SUM_EXEC, SUM_INCR, SUM_READY, SUM_WAIT, CUM_EXEC, CUM_INCR, CUM_SEND} CurrentState, NextState;
-assign proc_core_state = CurrentState;
 //Timer-related declarations:
 const logic [2:0] T1 = 5;
 const logic [2:0] tmax = T1-1;
@@ -119,7 +117,8 @@ always_comb begin
         
         CUM_SEND: begin
             data_ready = 1'b1;
-            NextState = IDLE;
+            if (!splitter_busy) NextState = IDLE;
+            else NextState = CUM_SEND;
         end
         
         default: begin

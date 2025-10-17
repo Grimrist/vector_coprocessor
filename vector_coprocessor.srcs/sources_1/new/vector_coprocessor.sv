@@ -12,13 +12,14 @@ assign JC = rx;
 assign rst = ~rst_n;
 
 // Clocks used for design
-logic clka, clkb;
+logic clka, clkb, clkc;
 
 clk_wiz_0 clk_src(
     .clk_in1(clk),
     .reset(rst),
     .clka(clka),
-    .clkb(clkb)
+    .clkb(clkb),
+    .clkc(clkc)
 );
 
 // BRAM instances
@@ -62,7 +63,7 @@ blk_mem_gen_0 BRAM_Vector_B (
 );
 
 // UART RX Logic
-logic flag_command;
+logic flag_command, flag_write;
 logic [7:0] rx_data;
 
 uart_rx_logic #(
@@ -84,11 +85,12 @@ uart_rx_logic #(
     .addra_b,
     .dina_b,
     .flag_command,
+    .flag_write,
     .rx_data
 );
 
 // Command block
-logic bram_sel, reset_res, out_mode, sqrt_res;
+logic bram_sel, reset_res, out_mode, sqrt_res, disable_screen;
 logic [1:0] cmd;
 logic [1:0] max_pck;
 
@@ -97,12 +99,14 @@ command_block Command_Block (
     .rst,
     .rx_data(rx_data[3:0]),
     .flag_command, 
+    .flag_write,
     .cmd,
     .bram_sel,
     .cmd_ready,
     .max_pck,
     .out_mode,
-    .sqrt_res
+    .sqrt_res,
+    .disable_screen
 );
 
 // Processing core
@@ -125,7 +129,6 @@ processing_core #(.MAX_ADDR(MEMORY_DEPTH)) Processing_Core (
     .result_out(result),
     .splitter_busy(splitter_busy),
     .data_ready(data_ready),
-    .proc_core_state(proc_core_state),
     .out_mode(out_mode),
     .sqrt_res(sqrt_res)
 );
@@ -154,11 +157,14 @@ end
 logic [6:0] segments_out;
 
 display_top display_top (
-    .clk(clk),
+    .clk(clkc),
     .rst(rst),
     .result(result),
     .segments(segments_out),
     .out_mode(out_mode),
+    .cmd_ready(cmd_ready),
+    .data_ready(data_ready),
+    .disable_screen(disable_screen),
     .anodes(anodes)
 );
 
@@ -168,21 +174,12 @@ top_uart_tx #(
     .CLK_FREQUENCY(100_000_000),
     .BAUD_RATE(115200) 
 ) UART_TX (
-    .clk(clkb),
+    .clk(clkc),
     .reset(rst),
     .tx(tx),
     .tx_start(tx_start),
     .tx_data(tx_data),
     .tx_busy(tx_busy)
-);
-
-// ILA 
-ila_0 ila (
-    .clk(clk),
-    .probe0(rx_data),
-    .probe1(splitter_busy),
-    .probe2(proc_core_state),
-    .probe3(addrb)
 );
 
 endmodule

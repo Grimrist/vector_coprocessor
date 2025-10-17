@@ -23,28 +23,37 @@
 module command_block (
     input logic clk, rst,
     input logic [3:0] rx_data,
-    input logic flag_command,
+    input logic flag_command, flag_write,
     output logic [1:0] cmd,
     output logic bram_sel,
     output logic cmd_ready,
     output logic out_mode,
     output logic [1:0] max_pck,
-    output logic sqrt_res
+    output logic sqrt_res,
+    output logic disable_screen
 );
 
 assign cmd = rx_data[1:0];
 assign out_mode = rx_data[2]; 
 assign bram_sel = rx_data[3];
-assign sqrt_res = (rx_data[2:0] == 3'b101) ? 1'd1 : 1'd0;
 assign max_pck = (out_mode) ? 2'd3 : 2'd1;
 
 always_ff @(posedge clk) begin
-    if (rst)
-        cmd_ready <= 'b0;
-    else if (flag_command)
+    if (flag_command)
         cmd_ready <= 'b1;
     else if (cmd_ready)
         cmd_ready <= 'b0;
 end
 
+always_ff @(posedge clk) begin
+    if (flag_command)
+        sqrt_res <= (rx_data[2:0] == 3'b101) ? 1'd1 : 1'd0;
+end
+
+always_ff @(posedge clk) begin
+    if (flag_write)
+        disable_screen <= 1'b1;
+    else if (flag_command)
+        disable_screen <= 1'b0;
+end
 endmodule

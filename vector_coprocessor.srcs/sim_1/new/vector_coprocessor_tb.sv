@@ -142,14 +142,22 @@ initial begin
     // (5) Recibir resultado HW
     uart_recv_bytes(euc_hw);
     #1000
-    uart_send_byte(8'b0000_0101); // eucDist = 0b101
-
     $display("A = %p", A);
     $display("B = %p", B);
     $display("Resultado HW   : %0d", euc_hw);
     $display("Resultado REF  : %0f", euc_ref);
     $display("Diferencia abs.: %0f", $itor(euc_hw) - euc_ref);
-
+    #1_000_000;
+    // (1) Cargar BRAMA
+    uart_send_byte(8'h00); // cabecera BRAMA
+    uart_send_byte(8'h00);
+    for (i = 0; i < N; i++) begin
+        uart_send_byte(A[i][7:0]); // byte bajo
+        uart_send_byte(A[i][15:8]); // byte alto
+        repeat (BIT_CLKS/8) @(posedge clk);
+    end
+    uart_send_byte(8'hFF); // fin
+    uart_send_byte(8'hFF);
     #1_000_000;
     $finish;
 end

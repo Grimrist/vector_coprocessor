@@ -33,7 +33,7 @@ module uart_rx_logic #(
     output logic ena_b, wea_b, rsta_b,
     output logic [$clog2(MEMORY_DEPTH)-1:0] addra_b,
     output logic [9:0] dina_b,
-    output logic flag_command,
+    output logic flag_command, flag_write,
     output logic [7:0] rx_data
 );
 
@@ -54,7 +54,6 @@ top_uart_rx #(
 //---------------------------------------------------------
 // Señales internas
 //---------------------------------------------------------
-logic flag_write;
 logic busy_sel_bram;
 logic busy_concat;
 logic enable_fsm_read;
