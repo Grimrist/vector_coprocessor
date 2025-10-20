@@ -6,7 +6,8 @@ module display_top (
     input  logic [29:0] result,
     input  logic        out_mode, data_ready, cmd_ready, disable_screen,   
     output logic [6:0]  segments,
-    output logic [7:0]  anodes
+    output logic [7:0]  anodes,
+    output logic DP
 );
   
     logic [6:0] seg0_bcd, seg1_bcd, seg2_bcd, seg3_bcd, seg4_bcd, seg5_bcd, seg6_bcd, seg7_bcd, seg8_bcd, seg9_bcd;
@@ -15,6 +16,15 @@ module display_top (
     localparam e_seg = 7'b1001111;
     localparam eight_seg = 7'b1111111;
     localparam nine_seg = 7'b1111011;
+    
+    logic exp_flag;
+    
+    always_comb begin
+        if (result >= 'd100_000_000)
+            exp_flag = 1'b1;
+        else
+            exp_flag = 1'b0;
+    end
     
     always_comb begin
         if (result >= 'd1_000_000_000)
@@ -58,7 +68,9 @@ module display_top (
         .seg6(seg6),
         .seg7(seg7),
         .segments(segments_int),
-        .anodes(anodes_int)
+        .anodes(anodes_int),
+        .exp_flag(exp_flag),
+        .DP(DP_int)
     );
     
     logic disp_on;
@@ -74,9 +86,11 @@ module display_top (
         if (!disp_on) begin
             segments = 7'b000_0000;   // todos los LEDs apagados
             anodes   = 8'b1111_1111;  // todos desactivados
+            DP = 1'b1;
         end else begin
             segments = segments_int;
             anodes   = anodes_int;
+            DP = DP_int;
         end
     end
 

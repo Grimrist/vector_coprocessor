@@ -1,10 +1,11 @@
 `timescale 1ns / 1ps
 
 module display_controller (
-    input  logic clk, rst,
+    input  logic clk, rst, exp_flag,
     input  logic [6:0] seg0, seg1, seg2, seg3, seg4, seg5, seg6, seg7,
     output logic [6:0] segments,
-    output logic [7:0] anodes
+    output logic [7:0] anodes,
+    output logic DP
 );
 
     logic anode_pulse;
@@ -26,6 +27,7 @@ module display_controller (
 
     // Multiplexor para elegir display y ánodo activo
     always_comb begin
+        DP = 1'b1;
         case (tdm_count)
             3'd0: begin
                 segments = seg0;
@@ -58,6 +60,8 @@ module display_controller (
             3'd7: begin
                 segments = seg7;
                 anodes   = 8'b0111_1111;
+                if (exp_flag)
+                    DP = 1'b0;
             end
         endcase
     end

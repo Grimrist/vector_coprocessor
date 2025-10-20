@@ -4,7 +4,8 @@ module vector_coprocessor
 #(parameter MEMORY_DEPTH = 1024) (
     input logic clk, rst_n, rx,
     output logic tx,
-    output logic [6:0]  segments,    
+    output logic [6:0]  segments,
+    output logic DP,    
     output logic [7:0]  anodes
 );
 
@@ -171,7 +172,8 @@ display_top display_top (
     .cmd_ready(cmd_ready),
     .data_ready(data_ready),
     .disable_screen(disable_screen),
-    .anodes(anodes)
+    .anodes(anodes),
+    .DP(DP)
 );
 
 assign segments = ~segments_out;

@@ -46,13 +46,13 @@ module non_restoring_sqrt #(
             else if (busy) begin
                 // Algoritmo principal
                 if (i < N/2 + 1) begin
-                    a <= {a[N-3:0], 2'b0};
+                    a     = {a[N-3:0], 2'b0};
                     if (r[N/2+1])
-                        r <= left + right;
+                        r = left + right;
                     else
-                        r <= left - right;
-                    q <= {q[N/2-2:0], ~r[N/2+1]};
-                    i <= i + 1;
+                        r = left - right;
+                    q = {q[N/2-2:0], ~r[N/2+1]};
+                    i = i + 1;
                 end 
                 else begin
                     // Finaliza el cálculo

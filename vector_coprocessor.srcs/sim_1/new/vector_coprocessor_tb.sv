@@ -13,7 +13,7 @@ localparam int BIT_CLKS    = CLK_FREQ_HZ / BAUD;
 // --------------------------
 // Señales hacia/desde el DUT
 // --------------------------
-logic clk, resetN, rx, tx;
+logic clk, resetN, rx, tx, DP;
 logic [6:0] segments;
 logic [7:0] anodes;
 
@@ -23,7 +23,8 @@ vector_coprocessor dut (
     .rx    (rx),
     .tx    (tx),
     .segments(segments),
-    .anodes(anodes)
+    .anodes(anodes),
+    .DP(DP)
 );
 
 // --------------------------

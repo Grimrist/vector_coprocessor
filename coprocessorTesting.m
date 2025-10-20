@@ -4,7 +4,7 @@ clc,close,clear all; % borra el workspace
 N_ELEMENTS=1024;  % define el numero de elementos de cada vector
 BIT_WIDTH = 10;
 % Configurar puerto serial
-COM_port = "/dev/ttyUSB1"
+COM_port = "/dev/ttyUSB1"; % Cambiar a puerto de usuario
 %puerto = serialport(COM_port, 115200);
 
 %% Generacion de vectores
@@ -26,9 +26,9 @@ fclose(h);
 
 %% Calcula valores de referencia para las operaciones, realizadas en forma local en el host
 sumVec_host = A+B;
-avgVec_host = floor((A+B)/2);
+avgVec_host = floor((A+B)/2); % Llevado a entero ya que procesador no entrega flotantes
 man_host = sum(abs(A-B));
-euc_host = sqrt(sum((A-B).^2));
+euc_host = floor(sqrt(sum((A-B).^2))); % Llevado a entero ya que procesador no entrega flotantes
 dot_host = dot(A,B);
 %% A partir de aca se realizan las operaciones por medio de comandos al coprocesador
 
