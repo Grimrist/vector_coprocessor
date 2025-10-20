@@ -17,15 +17,16 @@ module non_restoring_sqrt #(
     int                   i;
     logic                 busy;
 
+    assign right = {q, r[N/2+1], 1'b1};
+    assign left  = {r[N/2-1:0], a[N-1:N-2]};
+
     // Algoritmo secuencial
-    always_ff @(posedge Clock or posedge reset) begin
+    always_ff @(posedge Clock) begin
         if (reset) begin
             done    <= 0;
             sq_root <= 0;
             i       <= 0;
             a       <= 0;
-            left    <= 0;
-            right   <= 0;
             r       <= 0;
             q       <= 0;
             busy    <= 0;
@@ -39,23 +40,19 @@ module non_restoring_sqrt #(
                 busy   <= 1;
                 a      <= num_in;
                 i      <= 1;
-                left   <= 0;
-                right  <= 0;
                 r      <= 0;
                 q      <= 0;
             end
             else if (busy) begin
                 // Algoritmo principal
                 if (i < N/2 + 1) begin
-                    right = {q, r[N/2+1], 1'b1};
-                    left  = {r[N/2-1:0], a[N-1:N-2]};
-                    a     = {a[N-3:0], 2'b0};
+                    a <= {a[N-3:0], 2'b0};
                     if (r[N/2+1])
-                        r = left + right;
+                        r <= left + right;
                     else
-                        r = left - right;
-                    q = {q[N/2-2:0], ~r[N/2+1]};
-                    i = i + 1;
+                        r <= left - right;
+                    q <= {q[N/2-2:0], ~r[N/2+1]};
+                    i <= i + 1;
                 end 
                 else begin
                     // Finaliza el cálculo

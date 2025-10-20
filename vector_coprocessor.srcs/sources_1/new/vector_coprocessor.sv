@@ -19,7 +19,8 @@ clk_wiz_0 clk_src(
     .reset(rst),
     .clka(clka),
     .clkb(clkb),
-    .clkc(clkc)
+    .clkc(clkc),
+    .locked()
 );
 
 // BRAM instances
@@ -38,13 +39,16 @@ blk_mem_gen_0 BRAM_Vector_A (
     .addra(addra_a),
     .addrb(addrb),
     .dina(dina_a),
+    .douta(),
     .doutb(doutb_a),
     .ena(ena_a),
     .enb(enb),
     .wea(wea_a),
     .rsta(rsta_a),
     .web('0),
-    .dinb('0)
+    .dinb('0),
+    .rsta_busy(),
+    .rstb_busy()
 );
 
 blk_mem_gen_0 BRAM_Vector_B (
@@ -53,13 +57,16 @@ blk_mem_gen_0 BRAM_Vector_B (
     .addra(addra_b),
     .addrb(addrb),
     .dina(dina_b),
+    .douta(),
     .doutb(doutb_b),
     .ena(ena_b),
     .enb(enb),
     .wea(wea_b),
     .rsta(rsta_b),
     .web('0),
-    .dinb('0)
+    .dinb('0),
+    .rsta_busy(),
+    .rstb_busy()
 );
 
 // UART RX Logic
@@ -71,7 +78,7 @@ uart_rx_logic #(
     .BAUD_RATE(115200),
     .MEMORY_DEPTH(MEMORY_DEPTH)
 ) UART_RX_Logic (
-    .clk, 
+    .clk(clka), 
     .rst, 
     .rx,
     .ena_a, 
@@ -95,8 +102,7 @@ logic [1:0] cmd;
 logic [1:0] max_pck;
 
 command_block Command_Block (
-    .clk, 
-    .rst,
+    .clk(clkb), 
     .rx_data(rx_data[3:0]),
     .flag_command, 
     .flag_write,
@@ -134,7 +140,7 @@ processing_core #(.MAX_ADDR(MEMORY_DEPTH)) Processing_Core (
 );
 
 tx_splitter_new splitter (
-    .clk(clkb),
+    .clk(clkc),
     .rst(rst),
     .data_ready(data_ready),
 	.data_sel(data_sel), 

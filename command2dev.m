@@ -28,7 +28,7 @@ function res = command2dev(varargin)
         case 'sumVec'
             cmd = 0b10;
             N_ELEMENTS = 1024;
-            BIT_WIDTH = 10;
+            BIT_WIDTH = 11;
         case 'avgVec'
             cmd = 0b11;
             N_ELEMENTS = 1024;

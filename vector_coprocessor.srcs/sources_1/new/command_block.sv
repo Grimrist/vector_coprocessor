@@ -21,7 +21,7 @@
 
 
 module command_block (
-    input logic clk, rst,
+    input logic clk,
     input logic [3:0] rx_data,
     input logic flag_command, flag_write,
     output logic [1:0] cmd,
@@ -33,9 +33,11 @@ module command_block (
     output logic disable_screen
 );
 
-assign cmd = rx_data[1:0];
-assign out_mode = rx_data[2]; 
-assign bram_sel = rx_data[3];
+always_ff @(posedge clk) begin
+    cmd <= rx_data[1:0];
+    out_mode <= rx_data[2]; 
+    bram_sel <= rx_data[3];
+end
 assign max_pck = (out_mode) ? 2'd3 : 2'd1;
 
 always_ff @(posedge clk) begin
@@ -56,4 +58,6 @@ always_ff @(posedge clk) begin
     else if (flag_command)
         disable_screen <= 1'b0;
 end
+
+
 endmodule

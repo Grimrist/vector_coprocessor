@@ -4,15 +4,15 @@ clc,close,clear all; % borra el workspace
 N_ELEMENTS=1024;  % define el numero de elementos de cada vector
 BIT_WIDTH = 10;
 % Configurar puerto serial
-COM_port = "COM4"
+COM_port = "/dev/ttyUSB1"
 %puerto = serialport(COM_port, 115200);
 
 %% Generacion de vectores
 
 %Genera vectores A y B de 1024 elementos con numeros positivos 
 %(puede adaptarse facilmente si usan negativos y positivos).
-A=ceil((rand(N_ELEMENTS,1)*2^BIT_WIDTH - 1)/2);
-B=ceil((rand(N_ELEMENTS,1)*2^BIT_WIDTH - 1)/2);
+A=ceil((rand(N_ELEMENTS,1)*2^BIT_WIDTH - 1));
+B=ceil((rand(N_ELEMENTS,1)*2^BIT_WIDTH - 1));
 
 %Guarda vectores A y B (cada uno de una columna de 1024 filas) en un
 %archivo de texto. Cada linea del archivo contiene un elemento.

@@ -7,7 +7,6 @@ module uart_rx_logic #(
 )(
     input logic clk, rst, 
     input logic rx,
-    input logic flag_command_ack,
     output logic ena_a, wea_a, rsta_a,
     output logic [$clog2(MEMORY_DEPTH)-1:0] addra_a,
     output logic [9:0] dina_a,

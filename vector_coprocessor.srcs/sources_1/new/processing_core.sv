@@ -125,6 +125,7 @@ end
 //    .done(cordic_ready)
 //);
 
+logic [14:0] non_rest_sqrt;
 
 non_restoring_sqrt #(
     .N(30)   
@@ -133,10 +134,11 @@ non_restoring_sqrt #(
     .reset(rst),
     .enable(proc_ready),      
     .num_in(result_reg),     
-    .sq_root(result_sqrt),   
+    .sq_root(non_rest_sqrt),   
     .done(cordic_ready)      
 );
 
+assign result_sqrt = {15'b0, non_rest_sqrt};
 
 always_comb begin
     if (sqrt_res)
