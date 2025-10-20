@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/09/2025 11:50:41 PM
-// Design Name: 
-// Module Name: uart_rx_logic
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module uart_rx_logic #(
     parameter CLK_FREQUENCY = 100_000_000,
@@ -27,6 +7,7 @@ module uart_rx_logic #(
 )(
     input logic clk, rst, 
     input logic rx,
+    input logic flag_command_ack,
     output logic ena_a, wea_a, rsta_a,
     output logic [$clog2(MEMORY_DEPTH)-1:0] addra_a,
     output logic [9:0] dina_a,
@@ -65,6 +46,7 @@ logic enable_common;
 logic write_enable_common;
 logic [$clog2(MEMORY_DEPTH)-1:0] write_address_common;
 logic [9:0] write_data_common;
+logic rst_addr;
 
 //---------------------------------------------------------
 // Lógica de control entre FSMs
@@ -82,6 +64,7 @@ fsm_read_command fsm_read_command_inst (
     .rx_data(rx_data),
     .flag_write(flag_write),
     .flag_command(flag_command)
+    //.flag_command_ack(flag_command_ack)
 );
 
 //---------------------------------------------------------
@@ -112,7 +95,8 @@ fsm_concatenation fsm_concatenation_inst (
     .data_out(data_out),
     .flag_data_ready(flag_data_ready),
     .busy_concat(busy_concat),
-    .flag_end_write(flag_end_write)
+    .flag_end_write(flag_end_write),
+    .rst_addr(rst_addr)
 );
 
 //---------------------------------------------------------
@@ -123,6 +107,7 @@ FSM_RX_ctrl #(
 ) FSM_RX_ctrl_inst (
     .clk(clk),
     .rst(rst),
+    .rst_addr(rst_addr),
     .rx_ready(flag_data_ready),  // viene de fsm_concatenation
     .rx_data(data_out),          // viene de fsm_concatenation
     .enable(enable_common),
@@ -130,6 +115,7 @@ FSM_RX_ctrl #(
     .write_address(write_address_common),
     .write_data(write_data_common)
 );
+
 
 //---------------------------------------------------------
 // Multiplexores de selección de banco BRAM

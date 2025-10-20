@@ -6,7 +6,8 @@ module fsm_concatenation (
     output logic [9:0]  data_out,
     output logic        flag_data_ready,
     output logic        busy_concat,
-    output logic        flag_end_write       
+    output logic        flag_end_write,
+    output logic        rst_addr   
 );
 
     enum logic [2:0] {IDLE, BYTE1, HOLD ,BYTE2, CHECK_BYTE, DONE, WAIT_NEXT_BYTE,END_WRITE} state, next_state;
@@ -27,6 +28,7 @@ module fsm_concatenation (
         flag_data_ready = 1'b0;
         busy_concat = 1'b0;
         flag_end_write = 1'b0;
+        rst_addr= 1'b0;
         
         case (state)
             IDLE: begin
@@ -64,6 +66,7 @@ module fsm_concatenation (
             END_WRITE: begin
                 busy_concat = 1'b1;  
                 flag_end_write = 1'b1;
+                rst_addr= 1'b1;
             end
 
             DONE: begin
@@ -94,4 +97,3 @@ module fsm_concatenation (
     assign data_out = {high_byte[1:0], low_byte[7:0]};
 
 endmodule
-

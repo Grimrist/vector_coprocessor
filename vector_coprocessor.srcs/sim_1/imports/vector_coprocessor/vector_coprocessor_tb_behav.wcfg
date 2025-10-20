@@ -11,214 +11,263 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.834375000 ms"></ZoomStartTime>
-      <ZoomEndTime time="9.104375001 ms"></ZoomEndTime>
-      <Cursor1Time time="5.184375000 ms"></Cursor1Time>
+      <ZoomStartTime time="172.938200 us"></ZoomStartTime>
+      <ZoomEndTime time="5,697.938201 us"></ZoomEndTime>
+      <Cursor1Time time="1,567.938200 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="137"></NameColumnWidth>
-      <ValueColumnWidth column_width="60"></ValueColumnWidth>
+      <NameColumnWidth column_width="127"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/clk">
+   <WVObjectSize size="28" />
+   <wvobject fp_name="/vector_coprocessor_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/rx_data">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/rx_data" type="array">
       <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/flag_write">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/rx_ready" type="logic">
+      <obj_property name="ElementShortName">rx_ready</obj_property>
+      <obj_property name="ObjectShortName">rx_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/flag_write" type="logic">
       <obj_property name="ElementShortName">flag_write</obj_property>
       <obj_property name="ObjectShortName">flag_write</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/busy_concat">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/busy_concat" type="logic">
       <obj_property name="ElementShortName">busy_concat</obj_property>
       <obj_property name="ObjectShortName">busy_concat</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/flag_command">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/flag_command" type="logic">
       <obj_property name="ElementShortName">flag_command</obj_property>
       <obj_property name="ObjectShortName">flag_command</obj_property>
    </wvobject>
-   <wvobject fp_name="divider467" type="divider">
+   <wvobject type="divider" fp_name="divider467">
       <obj_property name="label">Command Block</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Command_Block/cmd">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Command_Block/cmd" type="array">
       <obj_property name="ElementShortName">cmd[1:0]</obj_property>
       <obj_property name="ObjectShortName">cmd[1:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Command_Block/bram_sel">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Command_Block/bram_sel" type="logic">
       <obj_property name="ElementShortName">bram_sel</obj_property>
       <obj_property name="ObjectShortName">bram_sel</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Command_Block/out_mode">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Command_Block/out_mode" type="logic">
       <obj_property name="ElementShortName">out_mode</obj_property>
       <obj_property name="ObjectShortName">out_mode</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/cmd_ready">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/cmd_ready" type="logic">
       <obj_property name="ElementShortName">cmd_ready</obj_property>
       <obj_property name="ObjectShortName">cmd_ready</obj_property>
    </wvobject>
-   <wvobject fp_name="divider662" type="divider">
+   <wvobject type="divider" fp_name="divider662">
       <obj_property name="label">Manhattan Distance</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_A">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_A" type="array">
       <obj_property name="ElementShortName">in_A[9:0]</obj_property>
       <obj_property name="ObjectShortName">in_A[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_B">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_B" type="array">
       <obj_property name="ElementShortName">in_B[9:0]</obj_property>
       <obj_property name="ObjectShortName">in_B[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_res">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/in_res" type="array">
       <obj_property name="ElementShortName">in_res[29:0]</obj_property>
       <obj_property name="ObjectShortName">in_res[29:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/out">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/ManDist/out" type="array">
       <obj_property name="ElementShortName">out[29:0]</obj_property>
       <obj_property name="ObjectShortName">out[29:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="divider85" type="divider">
+   <wvobject type="divider" fp_name="divider85">
       <obj_property name="label">Processing Core</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/NextState">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/ProcessingCoreFSM/NextState" type="array">
       <obj_property name="ElementShortName">NextState[10:0]</obj_property>
       <obj_property name="ObjectShortName">NextState[10:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/sel_bram">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/sel_bram" type="logic">
       <obj_property name="ElementShortName">sel_bram</obj_property>
       <obj_property name="ObjectShortName">sel_bram</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/data_ready">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/data_ready" type="logic">
       <obj_property name="ElementShortName">data_ready</obj_property>
       <obj_property name="ObjectShortName">data_ready</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/proc_ready">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/proc_ready" type="logic">
       <obj_property name="ElementShortName">proc_ready</obj_property>
       <obj_property name="ObjectShortName">proc_ready</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/Processing_Core/store_res">
+   <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/store_res" type="logic">
       <obj_property name="ElementShortName">store_res</obj_property>
       <obj_property name="ObjectShortName">store_res</obj_property>
    </wvobject>
-   <wvobject type="group" fp_name="group149">
+   <wvobject fp_name="group153" type="group">
+      <obj_property name="label">FSM_RX</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/vector_coprocessor_tb/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/rx_data" type="array">
+         <obj_property name="ElementShortName">rx_data[9:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_data[9:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/rst_addr" type="logic">
+         <obj_property name="ElementShortName">rst_addr</obj_property>
+         <obj_property name="ObjectShortName">rst_addr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/enable" type="logic">
+         <obj_property name="ElementShortName">enable</obj_property>
+         <obj_property name="ObjectShortName">enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/write_enable" type="logic">
+         <obj_property name="ElementShortName">write_enable</obj_property>
+         <obj_property name="ObjectShortName">write_enable</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/write_address" type="array">
+         <obj_property name="ElementShortName">write_address[9:0]</obj_property>
+         <obj_property name="ObjectShortName">write_address[9:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/UART_RX_Logic/FSM_RX_ctrl_inst/write_data" type="array">
+         <obj_property name="ElementShortName">write_data[9:0]</obj_property>
+         <obj_property name="ObjectShortName">write_data[9:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group149" type="group">
       <obj_property name="label">BRAMA</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/ena">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/ena" type="logic">
          <obj_property name="ElementShortName">ena</obj_property>
          <obj_property name="ObjectShortName">ena</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/enb">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/enb" type="logic">
          <obj_property name="ElementShortName">enb</obj_property>
          <obj_property name="ObjectShortName">enb</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/doutb">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/doutb" type="array">
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">doutb[9:0]</obj_property>
          <obj_property name="ObjectShortName">doutb[9:0]</obj_property>
          <obj_property name="label">A_doutb[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/wea">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/wea" type="array">
          <obj_property name="ElementShortName">wea[0:0]</obj_property>
          <obj_property name="ObjectShortName">wea[0:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/addra">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/addra" type="array">
          <obj_property name="ElementShortName">addra[9:0]</obj_property>
          <obj_property name="ObjectShortName">addra[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/dina">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_A/dina" type="array">
          <obj_property name="ElementShortName">dina[9:0]</obj_property>
          <obj_property name="ObjectShortName">dina[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="group" fp_name="group152">
+   <wvobject fp_name="group152" type="group">
       <obj_property name="label">BRAMB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/ena">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/ena" type="logic">
          <obj_property name="ElementShortName">ena</obj_property>
          <obj_property name="ObjectShortName">ena</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/enb">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/enb" type="logic">
          <obj_property name="ElementShortName">enb</obj_property>
          <obj_property name="ObjectShortName">enb</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/doutb">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/doutb" type="array">
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">doutb[9:0]</obj_property>
          <obj_property name="ObjectShortName">doutb[9:0]</obj_property>
          <obj_property name="label">B_doutb[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/wea">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/wea" type="array">
          <obj_property name="ElementShortName">wea[0:0]</obj_property>
          <obj_property name="ObjectShortName">wea[0:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/addra">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/addra" type="array">
          <obj_property name="ElementShortName">addra[9:0]</obj_property>
          <obj_property name="ObjectShortName">addra[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/dina">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/BRAM_Vector_B/dina" type="array">
          <obj_property name="ElementShortName">dina[9:0]</obj_property>
          <obj_property name="ObjectShortName">dina[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="group" fp_name="group115">
+   <wvobject fp_name="group115" type="group">
       <obj_property name="label">EucDist</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/A">
+      <wvobject fp_name="/vector_coprocessor_tb/A" type="array">
          <obj_property name="ElementShortName">A[0:7][31:0]</obj_property>
          <obj_property name="ObjectShortName">A[0:7][31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/B">
+      <wvobject fp_name="/vector_coprocessor_tb/B" type="array">
          <obj_property name="ElementShortName">B[0:7][31:0]</obj_property>
          <obj_property name="ObjectShortName">B[0:7][31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/EucDist/in_A">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/EucDist/in_A" type="array">
          <obj_property name="ElementShortName">in_A[9:0]</obj_property>
          <obj_property name="ObjectShortName">in_A[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/EucDist/in_B">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/EucDist/in_B" type="array">
          <obj_property name="ElementShortName">in_B[9:0]</obj_property>
          <obj_property name="ObjectShortName">in_B[9:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/EucDist/out" type="array">
+         <obj_property name="ElementShortName">out[29:0]</obj_property>
+         <obj_property name="ObjectShortName">out[29:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="group" fp_name="group117">
-      <obj_property name="label">display</obj_property>
+   <wvobject fp_name="group87" type="group">
+      <obj_property name="label">Cordic</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/Processing_Core/result_reg">
+   </wvobject>
+   <wvobject fp_name="group117" type="group">
+      <obj_property name="label">display</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/vector_coprocessor_tb/dut/Processing_Core/result_reg" type="array">
          <obj_property name="ElementShortName">result_reg[29:0]</obj_property>
          <obj_property name="ObjectShortName">result_reg[29:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/dut/result">
+      <wvobject fp_name="/vector_coprocessor_tb/dut/result" type="array">
          <obj_property name="ElementShortName">result[29:0]</obj_property>
          <obj_property name="ObjectShortName">result[29:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/segments">
+      <wvobject fp_name="/vector_coprocessor_tb/segments" type="array">
          <obj_property name="ElementShortName">segments[6:0]</obj_property>
          <obj_property name="ObjectShortName">segments[6:0]</obj_property>
          <obj_property name="Radix">BINARYRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/vector_coprocessor_tb/anodes">
+      <wvobject fp_name="/vector_coprocessor_tb/anodes" type="array">
          <obj_property name="ElementShortName">anodes[7:0]</obj_property>
          <obj_property name="ObjectShortName">anodes[7:0]</obj_property>
       </wvobject>

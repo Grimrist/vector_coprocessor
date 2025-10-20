@@ -117,13 +117,26 @@ always_ff @(posedge clk) begin
         result_reg <= result;
 end
 
-cordic_sqrt cordic_sqrt(
-    .clk(clk),
-    .start(proc_ready),
-    .in_val(result_reg),
-    .out_val(result_sqrt),
-    .done(cordic_ready)
+//cordic_sqrt cordic_sqrt(
+//    .clk(clk),
+//    .start(proc_ready),
+//    .in_val(result_reg),
+//    .out_val(result_sqrt),
+//    .done(cordic_ready)
+//);
+
+
+non_restoring_sqrt #(
+    .N(30)   
+) non_restoring_sqrt (
+    .Clock(clk),               
+    .reset(rst),
+    .enable(proc_ready),      
+    .num_in(result_reg),     
+    .sq_root(result_sqrt),   
+    .done(cordic_ready)      
 );
+
 
 always_comb begin
     if (sqrt_res)
